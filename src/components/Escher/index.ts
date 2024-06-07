@@ -86,11 +86,6 @@ export const initTalkingEscher = async (canvas: HTMLCanvasElement, audioElement:
 		ctx.drawImage(marisaEyes, eex + ex + 112 + Math.abs(f), eey + 248 + ey, 166, 42  + Math.abs(f)*2);
 		ctx.drawImage(baseImg, ex + 40 + Math.abs(f) * 2, 10 + ey, 320 - Math.abs(f)*4, 400 + Math.abs(f)*4);
 
-		ctx.font = "12px monospace";
-		ctx.fillStyle = "#fff";
-		ctx.fillText(`Mi: ${mi}`,0,10);
-		ctx.fillText(`Es: ${eyesShut}`,0,20);
-
 		window.requestAnimationFrame(drawFrame);
 	};
 	window.requestAnimationFrame(drawFrame);

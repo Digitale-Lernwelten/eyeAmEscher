@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { initTalkingEscher } from "./Escher";
+import React, { useEffect, useRef } from "react";
+import { initTalkingEscher, updateEscher } from "./Escher";
 
 interface EscherProps {
 	audio: string;
@@ -7,17 +7,22 @@ interface EscherProps {
 
 export const TalkingEscher: React.FC<EscherProps> = ({audio}) => {
 	const canvasRef:any = useRef(null);
-	const audioRef:any = useRef(null);
 
 	const start = () => {
-		if(canvasRef.current && audioRef.current){
-			initTalkingEscher(canvasRef.current, audioRef.current);
-		}
-	}
+		updateEscher({
+			audioSource: audio
+		});
+	};
+
+	useEffect(() => {
+		setTimeout(() => {
+			if(canvasRef.current){
+				initTalkingEscher(canvasRef.current);
+			}
+		},10);
+	});
 
 	return <div onClick={start}>
-		<h3>Click to Start!</h3>
-		<canvas ref={canvasRef} width={480} height={640}></canvas>
-		<audio ref={audioRef} src={audio} style={{display: "none"}}></audio>
+		<canvas ref={canvasRef} width={400} height={600}></canvas>
 	</div>
 };

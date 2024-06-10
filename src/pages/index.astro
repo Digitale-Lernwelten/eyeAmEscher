@@ -2,15 +2,179 @@
 import Layout from '../layouts/Layout.astro';
 import { TalkingEscher } from '../components/TalkingEscher';
 import audio from "../assets/audio/escher1.mp3";
+import logo from "../assets/img/EyeAmEscher.svg";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Eye am Escher">
 	<main>
-		<TalkingEscher client:only audio={audio}></TalkingEscher>
+		<div class="escher">
+			<TalkingEscher client:only audio={audio}></TalkingEscher>
+		</div>
+		<div class="slide active" slide-name="start" escher-x="50%" escher-y="55%">
+			<img class="logo" src={logo.src} width={logo.width} height={logo.height} />
+			<div class="slideLink linkLife" target-slide="life">Leben</div>
+			<div class="slideLink linkWork">Werk</div>
+		</div>
+		<div class="slide" slide-name="life" escher-x="20%" escher-y="50%" audio-src={audio}>
+			<div class="slideContent">
+				<p class="fadeIn" fade-in="100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+				<p class="fadeIn" fade-in="500"> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				<p class="fadeIn" fade-in="900">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+				<p class="fadeIn" fade-in="1500"> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				<div class="slideLink fadeIn" fade-in="1800" target-slide="start">Zur&uuml;ck</div>
+				<div class="slideLink fadeIn" fade-in="1800" target-slide="life2">Weiter</div>
+			</div>
+		</div>
+		<div class="slide" slide-name="life2" escher-x="80%" escher-y="50%" audio-src={audio}>
+			<div class="slideContent left">
+				<p class="fadeIn" fade-in="100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+				<p class="fadeIn" fade-in="500"> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				<p class="fadeIn" fade-in="900">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+				<p class="fadeIn" fade-in="1500"> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				<div class="slideLink fadeIn" fade-in="1800" target-slide="life">Zur&uuml;ck</div>
+				<div class="slideLink fadeIn" fade-in="1800" target-slide="start">Weiter</div>
+			</div>
+		</div>
 	</main>
 </Layout>
 
+<script>
+	import { updateEscher } from "../components/Escher";
+	const escher = document.querySelector<HTMLElement>(".escher");
+	if(!escher){
+		throw  new Error("Cant query escher");
+	}
+	setTimeout(() => {
+		for(const l of document.querySelectorAll<HTMLElement>("[target-slide]")){
+			l.onclick = () => {
+				for(const s of document.querySelectorAll<HTMLElement>(".slide")){
+					s.classList.remove("active");
+					for(const f of s.querySelectorAll<HTMLElement>(`.active[fade-in]`)){
+						f.classList.remove("active");
+					}
+				}
+				const sn = l.getAttribute("target-slide") || "start";
+				const s = document.querySelector<HTMLElement>(`.slide[slide-name="${sn}"]`);
+				if(s){
+					setTimeout(() => {
+						const ex = s.getAttribute("escher-x");
+						if(ex){
+							escher.style.left = ex;
+						}
+					},500);
+					setTimeout(() => {
+						const ey = s.getAttribute("escher-y");
+						if(ey){
+							escher.style.top = ey;
+						}
+					},300);
+					const audioSource = s.getAttribute("audio-src") || '';
+					updateEscher({
+						audioSource,
+					});
+					setTimeout(() => {
+						s.classList.add("active");
+						for(const fi of s.querySelectorAll(`[fade-in]`)){
+							fi.classList.add("fadeIn");
+							fi.classList.remove("active");
+							const fito = parseInt(fi.getAttribute("fade-in") || "0");
+							setTimeout(() => {
+								fi.classList.add("active");
+							},fito);
+						}
+					},1000);
+				}
+			}
+		}
+	},0);
+</script>
+
 <style>
+	html {
+		background: url("/BackgroundStartpage.jpg") no-repeat;
+		background-size: cover;
+	}
+
+	.fadeIn {
+		opacity: 0;
+		transition: opacity 900ms;
+	}
+
+	.fadeIn.active {
+		opacity: 1;
+	}
+
+	.slide {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: opacity 1200ms;
+	}
+
+	.slide.active {
+		opacity: 1;
+		z-index:1;
+	}
+
+	.slideContent {
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 65%;
+		padding: 4rem;
+		box-sizing: border-box;
+	}
+
+	.slideContent.left {
+		right: auto;
+		left:0;
+	}
+
+	.slideLink {
+		font-size: 3rem;
+		cursor: pointer;
+	}
+
+	.linkWork,
+	.linkLife {
+		position: absolute;
+		right: 65%;
+		top: 50%;
+	}
+
+	p {
+		font-size: 1.2rem;
+		line-height: 1.5em;
+		margin:0 0 1rem;
+	}
+
+	.linkWork {
+		left: auto;
+		left: 65%;
+	}
+
+	.escher {
+		position: fixed;
+		left: 50%;
+		top: 55%;
+		transform: translate(-50%, -50%);
+		transition: left 1700ms ease-in-out, top 1100ms ease-in-out;
+	}
+
+	html {
+		display: block;
+		height: 100%;
+	}
+
+	.logo {
+		position: fixed;
+		top: 2rem;
+		left: 2rem;
+	}
+
 	main {
 		margin: auto;
 		padding: 1rem;

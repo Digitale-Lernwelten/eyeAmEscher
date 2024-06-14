@@ -1,38 +1,104 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { TalkingEscher } from '../components/TalkingEscher';
-import audio from "../assets/audio/escher1.mp3";
+import jugendjahre from "../assets/audio/Escher_Jugendjahre.mp3";
+import vaterMutter from "../assets/audio/VaterMutterEscher.mp3";
+import streichquartett from "../assets/audio/Quartett.mp3";
+import zandvoort from "../assets/audio/Zandvoort.mp3";
 import logo from "../assets/img/EyeAmEscher.svg";
+import escher1 from "../assets/img/escher1.jpg";
+import escher2 from "../assets/img/escher2.jpg";
+import escher3 from "../assets/img/escher3.jpg";
 ---
 
 <Layout title="Eye am Escher">
 	<main>
 		<div class="escher">
-			<TalkingEscher client:only audio={audio}></TalkingEscher>
+			<TalkingEscher client:only audio={jugendjahre}></TalkingEscher>
 		</div>
+
 		<div class="slide active" slide-name="start" escher-x="50%" escher-y="55%">
 			<img class="logo" src={logo.src} width={logo.width} height={logo.height} />
 			<div class="slideLink linkLife" target-slide="life">Leben</div>
 			<div class="slideLink linkWork">Werk</div>
 		</div>
-		<div class="slide" slide-name="life" escher-x="20%" escher-y="50%" audio-src={audio}>
+
+		<div class="slide" slide-name="life" escher-x="20%" escher-y="50%" audio-src={jugendjahre}>
 			<div class="slideContent">
-				<p class="fadeIn" fade-in="100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-				<p class="fadeIn" fade-in="500"> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-				<p class="fadeIn" fade-in="900">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-				<p class="fadeIn" fade-in="1500"> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-				<div class="slideLink fadeIn" fade-in="1800" target-slide="start">Zur&uuml;ck</div>
-				<div class="slideLink fadeIn" fade-in="1800" target-slide="life2">Weiter</div>
+				<div class="slideImages slideImagesLife">
+					<img class="slideLink fadeIn escher1" fade-in="3000" target-slide="vaterMutter" src={escher1.src} width={escher1.width} height={escher1.height}/>
+					<img class="slideLink fadeIn escher2" fade-in="7000" target-slide="zandtvoort" src={escher2.src} width={escher2.width} height={escher2.height}/>
+					<img class="slideLink fadeIn escher3" fade-in="11000" target-slide="streichquartett" src={escher3.src} width={escher3.width} height={escher3.height}/>
+				</div>
+				<p class="fadeIn" fade-in="1000">Ich erblickte am 17. Juni 1898 als dritter Sohn von George Escher und Sara Gleichman in Leeuwarden das Licht der Welt. Meine Mutter, die nach zwei Söhnen sehnlichst eine Tochter wollte, entschied sich trotz des fortgeschrittenen Alters meines Vaters für eine weitere Schwangerschaft. Sie benannte mich nach ihrem Lieblingsonkel Maurits Cornelis, doch als Kind wurde ich von meiner Familie „Maukie“ genannt, später dann einfach „Mauk“. Auch meine Freunde übernahmen diesen Spitznamen.</p>
+				<p class="fadeIn" fade-in="5000">1903 übersiedelten wir nach Arnheim. Meine Kindheit dort war angenehm, doch litt ich oft unter gesundheitlichen Problemen. Um meine Kräfte wieder zu stärken, verbrachte ich 1905 einige Zeit alleine in einem Kindererholungsheim in Zandvoort.</p>
+				<p class="fadeIn" fade-in="10000">Ab 1912 besuchte ich die Oberschule in Arnheim, wo ich lebenslange Freunde fand. Der Schulalltag fesselte mich kaum, und ich blieb in der zweiten Klasse sitzen. 1918 bestand ich die Abschlussprüfung nicht. Dank der Beziehungen meines Vaters wurde ich dennoch an der Technischen Universität in Delft aufgenommen, wo meine Eltern hofften, dass ich eine Laufbahn als Architekt einschlagen würde.</p>
+				<div class="backAndForthWrap">
+					<div class="slideLink fadeIn" fade-in="13000" target-slide="life2">Weiter</div>
+				</div>
+			</div>
+			<div class="curSlideInfo">
+				<div class="curSlideInfoCol">
+					Jugendjahre<br/>
+					1898-1919
+				</div>
+				<div class="curSlideInfoCol">
+					<div class="slideLink" target-slide="start">Hauptmen&uuml;</div>
+				</div>
 			</div>
 		</div>
-		<div class="slide" slide-name="life2" escher-x="80%" escher-y="50%" audio-src={audio}>
+
+		<div class="slide" slide-name="vaterMutter" escher-x="20%" escher-y="50%" audio-src={vaterMutter}>
+			<div class="slideContent">
+				<div class="slideImages slideImagesVaterMutter">
+					<img class="escher1" src={escher1.src} width={escher1.width} height={escher1.height}/>
+				</div>
+				<p class="fadeIn" fade-in="1000">Mein Vater hatte aus seiner ersten Ehe mit Charlotte de Hartitzsch zwei Söhne, Eddy und Beer. Leider verstarb Charlotte mit nur 33 Jahren an einem Tumor. Aus der zweiten Ehe meines Vaters mit meiner Mutter, Sara, gingen neben mir noch meine Brüder Georg und Nol hervor.</p>
+				<p class="fadeIn" fade-in="5000">Mein Vater war Wasserbauingenieur und einer der niederländischen „Wassermänner“, die Ende des 19. Jahrhunderts auf Einladung des Kaisers in Japan arbeiteten. Nach seiner Rückkehr in die Niederlande im Jahr 1890 wurde er Hauptingenieur des Distrikts Friesland und Groningen beim Dienst Rijkswaterstaat in Leeuwarden. Dort mietete er für uns den Princessehof und richtete sein Büro im Haus ein.</p>
+				<p class="fadeIn" fade-in="10000">Als er älter wurde und in den Ruhestand ging, nannten ihn seine Freunde liebevoll „der alte Es“. Seine Einstellung zu meinen künstlerischen Werken war geprägt von einem großen Interesse an der Technik, aber auch von der Sorge, ob ich damit meinen Unterhalt bestreiten könnte. Er war sehr beruhigt, wenn er gute Kritiken über meine Werke las und wusste, dass ich damit Einnahmen erzielte.</p>
+				<p class="fadeIn" fade-in="15000">Mein Vater war auch ein großzügiger Mensch. Jedes Jahr finanzierte er einen Sommerurlaub für zwei Familien, die es aus gesundheitlichen Gründen besonders nötig hatten. Aus seinen gesamten Einnahmen spendete er zudem 10% an wohltätige Zwecke. Seine Sorge um den Unterhalt seiner Familie und seine Großzügigkeit prägten unser Leben und schufen ein Umfeld, in dem ich meine künstlerischen Fähigkeiten entwickeln konnte.</p>
+				<p class="fadeIn" fade-in="18000">Meine Mutter, Sara Gleichman, war die Tochter eines liberalen Finanzministers und stammte mütterlicherseits aus der Patrizierfamilie Van Hall. Mein Vater schätzte besonders ihr frisches Gesicht mit den roten Wangen, ihre Einfälle und ihren liberalen Geist. Während des Ersten Weltkriegs verteilte sie am Bahnhof Milch und Brötchen an belgische Flüchtlinge und engagierte sich in der Kommunalkommission für deren Unterbringung.</p>
+				<p class="fadeIn" fade-in="21000">Meine Mutter war eine bemerkenswerte Frau, die sich auch sehr für meine künstlerische Karriere einsetzte. Während meiner Zeit in Italien organisierte sie in den Niederlanden mehrere Ausstellungen meiner Werke. Sie war stets eine tatkräftige Unterstützerin und half mir dabei, meine Kunst einem breiteren Publikum bekannt zu machen.</p>
+				<div class="backWrap">
+					<div class="slideLink" target-slide="life">Zur&uuml;ck</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="slide" slide-name="zandtvoort" escher-x="20%" escher-y="50%" audio-src={zandvoort}>
+			<div class="slideContent">
+				<p class="fadeIn" fade-in="1000">Diese Periode zählt zu den elendesten meiner Jugend. Ich erinnere mich daran, wie ich in einem grellroten Anzug, den meine Mutter für mich ausgesucht hatte, täglich zur Schule gehen musste. Die anderen Kinder haben mich gehänselt und gequält, was den Schulweg durch das ganze Dorf zu einem täglichen Spießrutenlauf machte.</p>
+				<div class="slideImages slideImagesZandvoort">
+					<img src={escher2.src} width={escher2.width} height={escher2.height}/>
+				</div>
+				<div class="backWrap">
+					<div class="slideLink" target-slide="life">Zur&uuml;ck</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="slide" slide-name="streichquartett" escher-x="20%" escher-y="50%" audio-src={streichquartett}>
+			<div class="slideContent">
+				<p class="fadeIn" fade-in="1000">Musik war ein wesentlicher Teil meiner Jugend. Ich spielte Violoncello in einem Streichquartett mit Freunden. Obwohl ich später das Cello beiseite legte und es nur gelegentlich in sentimentaler Stimmung spielte, blieb meine Liebe zur Musik bestehen. Auch als ich mich in Baarn niederließ, versuchte ich mich kurz an der Flöte, musste jedoch feststellen, dass meine Lippen nicht für die höheren Noten geeignet waren.</p>
+				<div class="slideImages slideImagesZandvoort">
+					<img src={escher3.src} width={escher3.width} height={escher3.height}/>
+				</div>
+				<div class="backWrap">
+					<div class="slideLink" target-slide="life">Zur&uuml;ck</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="slide" slide-name="life2" escher-x="80%" escher-y="50%" audio-src={jugendjahre}>
 			<div class="slideContent left">
 				<p class="fadeIn" fade-in="100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
 				<p class="fadeIn" fade-in="500"> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 				<p class="fadeIn" fade-in="900">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
 				<p class="fadeIn" fade-in="1500"> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-				<div class="slideLink fadeIn" fade-in="1800" target-slide="life">Zur&uuml;ck</div>
-				<div class="slideLink fadeIn" fade-in="1800" target-slide="start">Weiter</div>
+				<div class="backAndForthWrap">
+					<div class="slideLink fadeIn" fade-in="1800" target-slide="life">Zur&uuml;ck</div>
+					<div class="slideLink fadeIn" fade-in="1800" target-slide="start">Weiter</div>
+				</div>
 			</div>
 		</div>
 	</main>
@@ -44,9 +110,14 @@ import logo from "../assets/img/EyeAmEscher.svg";
 	if(!escher){
 		throw  new Error("Cant query escher");
 	}
+	const timeouts:Set<number> = new Set();
 	setTimeout(() => {
 		for(const l of document.querySelectorAll<HTMLElement>("[target-slide]")){
 			l.onclick = () => {
+				for(const to of timeouts.values()){
+					clearTimeout(to);
+				}
+				timeouts.clear();
 				for(const s of document.querySelectorAll<HTMLElement>(".slide")){
 					s.classList.remove("active");
 					for(const f of s.querySelectorAll<HTMLElement>(`.active[fade-in]`)){
@@ -72,17 +143,17 @@ import logo from "../assets/img/EyeAmEscher.svg";
 					updateEscher({
 						audioSource,
 					});
-					setTimeout(() => {
+					timeouts.add(setTimeout(() => {
 						s.classList.add("active");
 						for(const fi of s.querySelectorAll(`[fade-in]`)){
 							fi.classList.add("fadeIn");
 							fi.classList.remove("active");
 							const fito = parseInt(fi.getAttribute("fade-in") || "0");
-							setTimeout(() => {
+							timeouts.add(setTimeout(() => {
 								fi.classList.add("active");
-							},fito);
+							},fito));
 						}
-					},1000);
+					},1000));
 				}
 			}
 		}
@@ -93,6 +164,116 @@ import logo from "../assets/img/EyeAmEscher.svg";
 	html {
 		background: url("/BackgroundStartpage.jpg") no-repeat;
 		background-size: cover;
+	}
+
+	.backWrap {
+		position: fixed;
+		left: 2rem;
+		width: 35%;
+		text-align: center;
+		bottom: 15%;
+	}
+
+	.slideImages {
+		margin-bottom: 1.5rem;
+	}
+
+	.slideImages img {
+		position: absolute;
+		display: block;
+		box-shadow: 0.2rem 0.2rem 1rem rgba(0,0,0,0.5);
+	}
+
+	.slideImagesVaterMutter {
+		display: block;
+		float: right;
+		width: 40%;
+		margin: 0 0 1rem 1rem;
+	}
+
+	.slideImagesVaterMutter > img {
+		width: 100%;
+		height: auto;
+		position: relative;
+	}
+
+	.slideImagesZandvoort > img {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.slideImagesLife {
+		display: block;
+		width: 100%;
+		height: 50%;
+		max-width: 780px;
+		position: relative;
+		margin:0 auto 1.5rem auto;
+	}
+
+	.slideImagesLife .escher1 {
+		left: 0;
+		top: 0;
+		width:auto;
+		height: 96%;
+	}
+
+	.slideImagesLife .escher2 {
+		left: 50%;
+		bottom: 0;
+		width:auto;
+		height: 58%;
+		transform: translateX(-50%);
+	}
+
+	.curSlideLine {
+		position: absolute;
+		left: 13rem;
+		bottom: 2rem;
+	}
+
+	.slideImagesLife .escher3 {
+		top: 0;
+		right: 0;
+		width:auto;
+		height: 62%;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	main {
+		display:block;
+		width:100%;
+		height:100%;
+		box-sizing: border-box;
+		color: white;
+		font-size: 1rem;
+		line-height: 1.5rem;
+	}
+
+	.curSlideInfo {
+		position: absolute;
+		left: 4rem;
+		bottom: 1rem;
+		font-size: 2rem;
+		line-height: 1.3em;
+		font-family: "Berolina", sans-serif;
+		text-shadow: 0.1rem 0.1rem 1rem #000;
+	}
+
+	.curSlideInfoCol {
+		display: inline-block;
+		margin-right: 3rem;
+	}
+
+	.curSlideInfoCol .slideLink {
+		font-family: "Bhavuka";
+		font-size: 2rem;
 	}
 
 	.fadeIn {
@@ -123,7 +304,8 @@ import logo from "../assets/img/EyeAmEscher.svg";
 		position: absolute;
 		right: 0;
 		top: 0;
-		width: 65%;
+		width: 68%;
+		height: 100%;
 		padding: 4rem;
 		box-sizing: border-box;
 	}
@@ -134,8 +316,9 @@ import logo from "../assets/img/EyeAmEscher.svg";
 	}
 
 	.slideLink {
-		font-size: 3rem;
+		font-size: 2rem;
 		cursor: pointer;
+		font-family: "Bhavuka", sans-serif;
 	}
 
 	.linkWork,
@@ -143,12 +326,15 @@ import logo from "../assets/img/EyeAmEscher.svg";
 		position: absolute;
 		right: 65%;
 		top: 50%;
+		font-family: "Berolina";
 	}
 
 	p {
-		font-size: 1.2rem;
-		line-height: 1.5em;
+		font-size: 1rem;
+		line-height: 1.3em;
 		margin:0 0 1rem;
+		font-family: "Bellota Text", sans-serif;
+		text-shadow: 0.1rem 0.1rem 0.5rem #0008;
 	}
 
 	.linkWork {
@@ -175,20 +361,24 @@ import logo from "../assets/img/EyeAmEscher.svg";
 		left: 2rem;
 	}
 
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
 	h1 {
 		font-size: 4rem;
 		font-weight: 700;
 		line-height: 1;
 		text-align: center;
 		margin-bottom: 1em;
+	}
+
+	.backAndForthWrap {
+		position: absolute;
+		right: 0;
+		bottom: 2rem;
+		padding: 0 4rem;
+	}
+
+	.backAndForthWrap .slideLink {
+		display: inline-block;
+		margin: 0 1rem;
+		text-shadow: 0.1rem 0.1rem 1rem #000;
 	}
 </style>
